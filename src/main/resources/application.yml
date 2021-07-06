@@ -1,0 +1,81 @@
+server:
+  port: 3305
+spring:
+  datasource:
+    url: 'jdbc:mysql://119.23.36.86:3306/sz_new_emergency?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false'
+    username: root
+    password: suncompass123456
+    driver-class-name: 'com.mysql.cj.jdbc.Driver'
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      validation-timeout: 300000
+      connection-timeout: 300000
+      idle-timeout: 60000
+      max-lifetime: 60000
+    dbcp2:
+      test-on-borrow: true
+      test-while-idle: true
+#  jpa:
+#    database: mysql
+#    show-sql: true
+##    open-in-view: true
+#    hibernate:
+#      ddl-auto: none
+#      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+#    source:
+#      jdbc-Url: jdbc:mysql://192.168.100.8:5509/see?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai
+#      username: root
+#      password: suncompass
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+    dest:
+      jdbc-Url: 'jdbc:mysql://119.23.36.86:3306/sz_new_emergency?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai'
+      username: root
+      password: suncompass123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 0
+    host: 192.168.100.8
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+      shutdown-timeout: 100ms
+#    password: 'suncompass123456'
+    port: 6379
+
+task:
+  dataSync: '0 1/1 * * * ?'
+  uploadFile: '0 1/5 0 * * ?'
+  downloadFile: '0  1/5 0 * * ?'
+  syncNotice: '0 1/5 * * * ?'
+  downData: '0 0/1 * * * ?'
+  tables: base_attachment,base_basin,base_bulletin,base_bulletin_object,base_bulletin_reader,base_data_update,base_drainage_direction,base_emergencies,base_emergency_drills,base_emergency_expert,base_emergency_person,base_emergency_supplies,base_emergency_supplies_type,base_emergency_training,base_environment_protection,base_factor,base_industry,base_material,base_material_dict,base_msg,base_org_user,base_outlet,base_product_material,base_risk_material,base_risk_preventive_measure,base_risk_source,base_risk_unit,base_solid_waste,base_supplies_warehouse,base_systemlog,base_version,emergency_filing,emergency_latent_risk,emergency_monitoring_agency
+canal:
+  host: 119.23.36.86
+  port: 11111
+  username: canal
+  password: suncompass123456
+  batchSize: 100
+  zkHosts:
+  filter:
+  destination: SzEmergency
+
+ProEmergency:
+  prefix: 'http://119.23.36.86:8041'
+  baseApi: 'http://119.23.36.86:8037'
+  downloadUrl: 'http://192.168.100.8:3405/v1/d'
+
+upfileDir: 'D:\\工作\\svn\\Project_2018\\深圳市环境应急综合管理平台\\shenzhen'
+
+upload:
+  url: http://127.0.0.1:8080/api
+  username: upload
+  password: upload123

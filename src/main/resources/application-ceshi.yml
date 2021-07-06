@@ -1,0 +1,53 @@
+server:
+  port: 3305
+spring:
+  datasource:
+#    source:
+#      jdbc-Url: jdbc:mysql://192.168.100.8:5509/see?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai
+#      username: root
+#      password: suncompass
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+    dest:
+      jdbc-Url: 'jdbc:mysql://10.253.177.114:3306/sz_new_emergency?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai'
+      username: root
+      password: yingzhitong123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 0
+    host: 127.0.0.1
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+      shutdown-timeout: 100ms
+    password: 'suncompass123456'
+    port: 6379
+
+task:
+  dataSync: '0 1/5 * * * ?'
+  uploadFile: '0 1/5 * * * ?'
+  downloadFile: '0 1/5 * * * ?'
+  syncNotice: '0 1/1 * * * ?'
+  tables: base_attachment,base_basin,base_bulletin,base_bulletin_object,base_bulletin_reader,base_data_update,base_drainage_direction,base_emergencies,base_emergency_drills,base_emergency_person,base_emergency_supplies,base_emergency_supplies_type,base_emergency_training,base_environment_protection,base_factor,base_industry,base_material,base_material_dict,base_msg,base_org_user,base_outlet,base_product_material,base_risk_material,base_risk_preventive_measure,base_risk_source,base_risk_unit,base_solid_waste,base_supplies_warehouse,base_systemlog,base_version,emergency_enterprise_scoring,emergency_filing,emergency_government_filing,emergency_index_item,emergency_latent_risk,emergency_monitoring_agency,emergency_risk_checkup_item,emergency_risk_checkup_table,emergency_spot_check,emergency_task_message,emergency_task_message_record,emergency_technology,process_instance,process_opinion 
+canal:
+  host: 10.253.177.114
+  port: 11111
+  username: canal
+  password: canal
+  batchSize: 100
+  zkHosts:
+  filter:
+  destination: sz
+
+ProEmergency:
+  prefix: 'https://www-app.gdeei.cn/see/share'
+  baseApi: 'https://www-app.gdeei.cn/see/api'
+  downloadUrl: 'https://www-app.gdeei.cn/see/sync/v1/d'
+upfileDir: '/data/code/old-service'
+
+upload:
+  url: http://127.0.0.1:8080/api
+  username: upload
+  password: upload123
